@@ -1,9 +1,9 @@
 #include <stdio.h>
 /**
- * main -entry point
- *prints a-z
- * Return 0 after executing the program
- */
+*main -Entry point
+*a-z task
+*Return: return 0 after program execution
+*/
 
 int main(void)
 {
