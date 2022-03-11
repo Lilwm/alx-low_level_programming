@@ -2,12 +2,13 @@
 #include <time.h>
 /* more headers goes there */
 #include <stdio.h>
-/* more headers goes there 
- * main - header
- * 
- * return 0 if successful
- **/
 
+/**
+ * main - header
+ *
+ *return 0 if successful
+ */
+ 
 int main(void)
 {
 int n;
