@@ -2,13 +2,11 @@
 #include <time.h>
 /* more headers goes there */
 #include <stdio.h>
-
 /**
-*Main -Entry point
+*main -Entry point
 *Positive negative while task
 *Return: return 0 after program execution
 */
- 
 int main(void)
 {
 int n;
