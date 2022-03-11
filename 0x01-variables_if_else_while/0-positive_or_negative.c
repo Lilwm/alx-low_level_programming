@@ -4,10 +4,10 @@
 #include <stdio.h>
 
 /**
- * main - header
- *
- *return 0 if successful
- */
+*Main -Entry point
+*Positive negative while task
+*Return: return 0 after program execution
+*/
  
 int main(void)
 {
@@ -16,11 +16,11 @@ srand(time(0));
 n = rand() - RAND_MAX / 2;
 if (n < 0)
 {
-printf("%d is negative ", n);
+printf("%d is negative\n", n);
 }
 else if (n > 0)
-printf("%d is positive ", n);
+printf("%d is positive\n", n);
 else
-printf("%d is zero ", n);
+printf("%d is zero\n", n);
 return (0);
 }
