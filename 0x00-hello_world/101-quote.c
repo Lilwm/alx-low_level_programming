@@ -3,7 +3,7 @@
 
 /**
  *main - head
- *
+ *-Dora Korpar
  *Return: always 0 (success)
  */
 int main(void)
