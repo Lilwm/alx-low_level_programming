@@ -12,7 +12,7 @@ int i = 0;
 /*beggining of While loop to print all single digits*/
 while (i < 10)
 {
-printf("%d\n", i);
+printf("%d", i);
 i++;
 }
 return (0);
