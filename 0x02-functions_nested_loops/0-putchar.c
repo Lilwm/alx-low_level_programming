@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "main.h"
 /**
  *main-entry point
  * _putchar - writes the character c to stdout
@@ -9,12 +9,14 @@
 int main(void)
 
 {
-	char *c = "_putchar";	/* define putchar*/
-	unsigned long i;
-	{
-	for (i = 0; i <= sizeof(c); i++)
-	putchar(c[i]);
-	}
-return (0);
+	char *s = "_putchar";	/* define putchar*/
 
+	while (*s != '\0')
+	{_putchar(*s);
+	s++;
+	}
+
+	_putchar('\n');
+	return (0);
 }
+
