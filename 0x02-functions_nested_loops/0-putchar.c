@@ -15,8 +15,6 @@ int main(void)
 	for (i = 0; i <= sizeof(c); i++)
 	putchar(c[i]);
 	}
-	putchar('\n');	/*new line at the end of function8*/
-
 return (0);
 
 }
