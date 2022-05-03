@@ -1,79 +1,52 @@
-#include <stdlib.h>
 #include "lists.h"
-
+#include <string.h>
+#include <stdio.h>
 /**
- * add_node_end - function with two arguments
- * @head: pointer to struct of linked list
- * @str: char type pointer to string
+ * add_node_end - Adds a new node at the end
+ *                of a list_t list.
+ * @head: A pointer the head of the list_t list.
+ * @str: The string to be added to the list_t list.
  *
- * Description: adds a new node at the end of linked list
- * Return: address of new element
+ * Return: If the function fails - NULL.
+ *         Otherwise - the address of the new element.
  */
+
 list_t *add_node_end(list_t **head, const char *str)
 {
-	int count = 0;
-	list_t *end_node, *cursor;
+	int len;
+	char *dup;
+	list_t *new_node, *current_node;
 
-	end_node = malloc(sizeof(list_t));
-	if (end_node == NULL)
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
+	{
 		return (NULL);
+	}
 
-	if (str)
-	{
-		end_node->str = _strdup(str);
-		while (str[count] != '\0')
-			count++;
-		end_node->len = count;
-	}
-	else
-	{
-		end_node->str = NULL;
-		end_node->len = 0;
-	}
-	end_node->next = NULL;
-	if (*head)
-	{
-	cursor = *head;
-	while (cursor->next != NULL)
-		cursor = cursor->next;
-	cursor->next = end_node;
-	}
-	else
-		*head = end_node;
-	return (end_node);
-}
-
-/**
- * *_strdup - function with one argument
- * @str: string argument
- *
- * Description: returns a pointer to allocated space in memory
- * Return: pointer
- */
-char *_strdup(const char *str)
-{
-	int i, j;
-	char *ptr;
+	dup = strdup(str);
 
 	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (*(str + i) != '\0')
 	{
-		i++;
+		free(new_node);
+		return (NULL);
 	}
 
-	ptr = malloc(sizeof(char) * i + 1);
+	for (len = 0; str[len] != '\0'; len++)
 
-	if (ptr == NULL)
-		return (NULL);
+	new_node->str = dup;
+	new_node->len = len;
 
-	j = 0;
-	while (str[j] != '\0')
+	new_node->next = NULL;
+	
+	if (*head == NULL)      /*check for empty linked list*/
+		*head = new_node;
+	current_node = *head;
+	
+	while (current_node->next != NULL)
 	{
-		ptr[j] = str[j];
-		j++;
+		current_node = current_node->next;
 	}
-	ptr[j] = '\0';
-	return (ptr);
+	current_node->next = new_node;
+    new_node->next = NULL;
+    return (*head);
 }
