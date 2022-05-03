@@ -1,52 +1,81 @@
-#include "lists.h"
 #include <string.h>
 #include <stdio.h>
-/**
- * add_node_end - Adds a new node at the end
- *                of a list_t list.
- * @head: A pointer the head of the list_t list.
- * @str: The string to be added to the list_t list.
- *
- * Return: If the function fails - NULL.
- *         Otherwise - the address of the new element.
- */
+#include "lists.h"
 
+/**
+ * _strlen - calculate the length of a string
+ * @str: the string to calculate the length of
+ *
+ * Return: the length of the string
+ */
+size_t _strlen(const char *str)
+{
+	const char *pos = str;
+
+	if (str)
+	{
+		while (*pos)
+			++pos;
+	}
+	return (pos - str);
+}
+
+/**
+ * _strdup - create a new array containing a copy of the given string
+ * @str: a pointer to the string to copy
+ *
+ * Return: If str is NULL or if memory allocation fails, return NULL.
+ * Otherwise a return a pointer to the new copy
+ */
+char *_strdup(const char *str)
+{
+	char *dup = NULL;
+	size_t size = 0;
+
+	if (!str)
+		return (NULL);
+
+	while (str[size++])
+		;
+
+	dup = malloc(sizeof(char) * size);
+	if (!dup)
+		return (NULL);
+
+	while (size--)
+		dup[size] = str[size];
+
+	return (dup);
+}
+
+/**
+ * add_node_end - add a string at the end of the list
+ * @head: a pointer to the address of the first list node
+ * @str: the string to add to the list
+ *
+ * Return: If memory allocation fails, return NULL. Otherwise, return the
+ * address of the new no
+ */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	int len;
-	char *dup;
-	list_t *new_node, *current_node;
+	list_t *new = NULL;
 
-	new_node = malloc(sizeof(list_t));
-	if (new_node == NULL)
-	{
+	if (!head)
 		return (NULL);
-	}
 
-	dup = strdup(str);
+	if (*head)
+		return (add_node_end(&(*head)->next, str));
 
-	if (str == NULL)
-	{
-		free(new_node);
+	new = malloc(sizeof(list_t));
+	if (!new)
 		return (NULL);
-	}
 
-	for (len = 0; str[len] != '\0'; len++)
 
-	new_node->str = dup;
-	new_node->len = len;
+	new->str = _strdup(str);
+	new->len = (_strlen(new->str));
+	new->next = *head;
 
-	new_node->next = NULL;
-	
-	if (*head == NULL)      /*check for empty linked list*/
-		*head = new_node;
-	current_node = *head;
-	
-	while (current_node->next != NULL)
-	{
-		current_node = current_node->next;
-	}
-	current_node->next = new_node;
-    new_node->next = NULL;
-    return (*head);
+	*head = new;
+
+	return (new);
 }
